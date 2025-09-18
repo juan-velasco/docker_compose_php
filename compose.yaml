@@ -3,8 +3,10 @@ services:
     build: .
     container_name: php-apache
     volumes:
-      - ./books:/var/www/html
-      - ./etc/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./books:/var/www/books
+      - ./movies:/var/www/movies
+      - ./etc/apache/books.conf:/etc/apache2/sites-enabled/books.conf
+      - ./etc/apache/movies.conf:/etc/apache2/sites-enabled/movies.conf
       - ./etc/php/php.ini:/usr/local/etc/php/php.ini
     ports:
       - "8080:80"
