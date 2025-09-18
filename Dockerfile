@@ -11,4 +11,4 @@ RUN docker-php-ext-install pdo pdo_pgsql zip gd exif bcmath opcache
 RUN a2enmod rewrite
 
 COPY ./etc/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
-COPY ./src /var/www/html
+COPY ./books /var/www/html

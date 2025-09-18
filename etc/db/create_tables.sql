@@ -1,10 +1,19 @@
 CREATE TABLE IF NOT EXISTS books (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    author VARCHAR(255) NOT NULL,
-    published_year INT
+    author VARCHAR(255) NOT NULL
 );
 
-INSERT INTO books (title, author, published_year) VALUES
-('The Pragmatic Programmer', 'Andrew Hunt', 1999),
-('Clean Code', 'Robert C. Martin', 2008);
+INSERT INTO books (title, author) VALUES
+('The Pragmatic Programmer', 'Andrew Hunt'),
+('Clean Code', 'Robert C. Martin');
+
+CREATE TABLE IF NOT EXISTS movies (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    director VARCHAR(255) NOT NULL
+);
+
+INSERT INTO movies (title, director) VALUES
+('Star Wars', 'George Lucas'),
+('The Godfather', 'Francis Ford Coppola');
