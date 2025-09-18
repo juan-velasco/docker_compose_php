@@ -3,7 +3,7 @@ services:
     build: .
     container_name: php-apache
     volumes:
-      - ./src:/var/www/html
+      - ./books:/var/www/html
       - ./etc/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./etc/php/php.ini:/usr/local/etc/php/php.ini
     ports:
