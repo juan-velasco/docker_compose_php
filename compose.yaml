@@ -1,0 +1,41 @@
+services:
+  web:
+    build: .
+    container_name: php-apache
+    volumes:
+      - ./src:/var/www/html
+      - ./etc/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./etc/php/php.ini:/usr/local/etc/php/php.ini
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_NAME=exampledb
+      - DB_USER=postgres
+      - DB_PASS=postgres
+
+  db:
+    image: postgres:12
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_DB: exampledb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./etc/db/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql # Script de inicialización, solamente se ejecuta la primera vez
+      - db-data:/var/lib/postgresql/data # Volumen para persistir los datos
+    ports:
+      - "5432:5432"
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    container_name: mailcatcher
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+
+volumes:
+  db-data:
